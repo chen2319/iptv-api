@@ -9,6 +9,9 @@ name: 'Update schedule'
 # Many scheduled workflows from forks can cause workflows to be disabled.
 # If scheduled execution is required, use other deployment methods.
 
+permissions:
+  contents: write                                    # 添加这行：给写入权限
+
 on:
   workflow_dispatch:
 
@@ -48,3 +51,5 @@ jobs:
             git commit -m "Github Action Auto Updated"
             git push --force
           fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}    # 添加这行：提供认证令牌
